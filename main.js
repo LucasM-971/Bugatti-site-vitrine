@@ -33,15 +33,46 @@ window.addEventListener("scroll", () => {
     lastScroll = currentScroll;
 });
 
-// Forcer le démarrage de la vidéo background
+// Forcer le démarrage des vidéos et empêcher les interactions
 document.addEventListener('DOMContentLoaded', function() {
-    const video = document.querySelector('.background-image video');
-    if (video) {
+    const videos = document.querySelectorAll('video');
+    
+    videos.forEach(video => {
+        // Forcer la lecture
         video.play().catch(function(error) {
             console.log('Autoplay failed:', error);
             document.addEventListener('click', function() {
                 video.play();
             }, { once: true });
         });
-    }
+        
+        // Empêcher la pause par clic
+        video.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            video.play();
+        });
+        
+        // Empêcher la pause par clavier
+        video.addEventListener('keydown', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+        
+        // Forcer la lecture si la vidéo est mise en pause
+        video.addEventListener('pause', function() {
+            setTimeout(() => {
+                video.play();
+            }, 100);
+        });
+        
+        // Empêcher le menu contextuel
+        video.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        
+        // Désactiver les contrôles
+        video.controls = false;
+        video.disablePictureInPicture = true;
+    });
 });
