@@ -1,0 +1,922 @@
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  padding: 0px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;  
+  font-family: "Gothic A1", serif;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Vidéo de fond, nommé image car c'était une image a la base*/
+
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;  
+  height: 100vh;  
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.background-image video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Text qui est par dessus la vidéo background */
+
+.text-overlay {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  font-family: "Gothic A1", serif;
+  font-weight: 200;
+  font-style: normal;
+  cursor: pointer;
+  opacity: 0;
+  animation: slideUp 0.7s ease-out forwards;
+  max-width: 90vw;
+  z-index: 100;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+  
+.text-overlay h1 {
+  font-size: clamp(60px, 8vw, 158px);
+  margin: 0 0 10px;
+  line-height: 1.1;
+}
+  
+/* Bouton qui est par dessus la vidéo background, debug car l'id ne le centrais pas au milieu de la page*/
+  
+.btn-debug{
+  border: 1px solid #ffffff;
+  background-color: transparent;
+  color: white;
+  padding: 12px 25px;
+  cursor: pointer;
+  margin-top: 40px;
+  margin-left: 0;
+  font-size: clamp(12px, 1.5vw, 16px);
+  white-space: nowrap;
+  }
+  
+.btn-debug:hover {
+  border-color: #d4d4d4;
+  color: #d4d4d4;
+}
+  
+/* Animation au lancement de la page, fait a l'aide de ChatGPT*/
+
+@keyframes slideUp {
+  0% {
+    transform: translate(-50%, 50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+
+@keyframes slidein {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* header */
+
+header {
+  position: fixed; 
+  width: 100%;
+  padding: 15px 20px;
+  margin-top: -10px;
+  background: rgba(255, 255, 255, 0); 
+  backdrop-filter: blur(0px);
+  transition: transform 0.3s ease, opacity 0.3s ease, backdrop-filter 0.3s ease; 
+  z-index: 1000; 
+}
+
+/* Animation , fait a l'aide de ChatGPT*/
+.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.visible {
+  background: rgba(56, 53, 53, 0.7);
+  backdrop-filter: blur(20px);
+  height: 40px; 
+  transform: translateY(0);
+}
+
+
+
+
+header ul {
+  position: absolute;
+  display: flex;
+  list-style: none;
+  margin-top: 15px;
+  margin-left: 240px;
+  padding: 0;
+  max-width: 90%;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+header ul li {
+  margin: 0 90px;
+  display: block;
+}
+
+
+header ul a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: lighter;
+  margin-left: 100px;
+  font-family: 'Montserrat', sans-serif;
+  white-space: nowrap;
+}
+
+ul li a:hover {
+color: grey; 
+}
+
+/* Section en dessous de l'aniamtion de la vidéo background; débug car 
+Il y avait un probleme avec la marge du haut et du bas */
+
+.debug-section{
+  margin-top: 950px;
+  background-color: #050505;
+  width: auto;
+  height: 1300px;
+}
+
+/* ID des sections */
+  
+#presentation-voiture {
+  background-color: #050505;
+  width: auto;
+  height: 1300px;
+  
+}
+
+/* Un deuxième overlay pour la vidéo*/
+
+.txt-overlay {
+  top: 165%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+  font-family: "Gothic A1", serif;
+  font-weight: 300;
+  cursor: pointer;
+  max-width: 90%;
+  padding: 0 20px;
+}
+
+.txt-overlay h4 {
+  font-size: clamp(24px, 4vw, 33px);
+  margin: 0 0 10px;
+}
+
+/* Vidéo*/
+
+.video-voiture {
+  width: min(1660px, 90%);
+  height: 880px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 140px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  max-width: 90%;
+}
+
+
+
+/* ID pour tout les h3 et p*/
+
+#h3-presentation{
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300; 
+  font-size: clamp(28px, 4vw, 42px);
+  text-align: center;
+  font-style:inherit;
+  font-weight: bold;
+  padding: 0 20px;
+}
+
+#p-bugatti{
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  font-size: clamp(14px, 2vw, 18px);
+  text-align: center;
+  font-weight: 50; 
+  margin-top: -20px;
+  padding: 0 20px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* balise ul nommé brand*/
+
+.brand {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+
+.photo-brand {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  width: min(520px, 100%);
+  height: 715px;
+  max-width: 520px;
+  flex: 1 1 300px;
+}
+
+
+.photo-brand img {
+  display: block;
+  width: 100%;
+  height: 100%; 
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+  filter:brightness(70%) ;
+
+}
+
+.photo-brand:hover img {
+  transform: scale(1.05);
+}
+
+.maison-name {
+  text-align: center;
+  font-weight: 500;
+  font-size: clamp(20px, 3vw, 30px);
+  color: rgb(255, 255, 255);
+  position: absolute;
+  top: 35px;
+  padding: 0 10px;
+}
+
+#btn-presentation {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+  padding: 14px 40px;
+  width: 80%;
+  font-size: 12px;
+}
+
+
+#btn-presentation:hover {
+  border-color: #d4d4d4;
+  color: #d4d4d4;
+}
+
+/* Section voiture Luxe avec elle aussi des balsies ul*/
+
+.voiture-luxe{
+  margin-top: -150px;
+  min-height: 2650px;
+}
+
+.collection {
+  display: flex;
+  gap: 34px;
+  margin-right: 60px;
+  margin-top: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+
+#photo-collection {
+  position: relative;
+  overflow: hidden;
+  flex: 1 1 300px;
+  max-width: 600px;
+}
+
+#photo-collection img {  
+  height: 720px;
+  width: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+#photo-collection:hover img {
+  transform: scale(1.05);
+}
+
+.brand-name {
+  font-family: "Allura", serif;
+  font-weight: 400;
+  font-size: clamp(40px, 6vw, 100px);
+  color: white;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+
+
+#btn-collection {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+  padding: 12px 0;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#btn-collection:hover {
+  border-color: #d4d4d4;
+  color: #d4d4d4;
+}
+
+/* Un rectangle gris foncé, par dessus la section*/
+
+.rectangle {
+  background-color: #161515;
+  display: flex; 
+  align-items: center; 
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: min(1740px, 90%);
+  width: 90%;
+}
+
+.rectangle img {
+  width: auto;
+  height: 850px;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+
+.text-content {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px; 
+}
+
+.h3-rec {
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px; 
+}
+
+.p-rec {
+  font-size: clamp(14px, 2vw, 18px);
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+
+
+
+#btn-transparent{
+  border: 1px solid #ffffff;
+  background-color: transparent;
+  color: white;
+  padding: 12px 25px;
+  cursor: pointer;
+  margin-top: 40px;
+}
+
+#btn-transparent:hover{
+  border-color: #d4d4d4;
+  color: #d4d4d4;
+}
+
+header .text-overlay{
+  margin-left: 250px ;
+}
+
+/*Footer du site */
+
+footer {
+  background-color: #0c0c0c ;
+  color: #f0f5f9;
+  padding: 2rem;      
+  clear: both; 
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+#footer-section {
+  flex: 1 1 200px;
+  min-width: 200px;
+}
+
+#footer-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+#footer-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.social-icons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.social-icons a {
+  margin-right: 1rem;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - MEDIA QUERIES
+   ======================================== */
+
+/* Tablettes et écrans moyens (max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  /* Header */
+  header {
+    padding: 10px 15px;
+    width: 100%;
+    max-width: 100vw;
+  }
+  
+  header ul {
+    margin-left: 20px;
+    max-width: 95%;
+    justify-content: center;
+    position: relative;
+  }
+  
+  header ul li {
+    margin: 0 25px;
+  }
+  
+  header ul a {
+    font-size: 16px;
+    margin-left: 0;
+  }
+  
+  /* Section hero */
+  .text-overlay {
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+    max-width: 95vw;
+    width: 95%;
+  }
+  
+  .text-overlay h1 {
+    font-size: 120px;
+  }
+  
+  .btn-debug {
+    margin-left: 0;
+    padding: 10px 20px;
+  }
+  
+  /* Vidéo actualités */
+  .video-voiture {
+    width: 90%;
+    height: 600px;
+    margin-left: 5%;
+  }
+  
+  .txt-overlay {
+    left: 50%;
+    margin-left: 0;
+    top: 130%;
+    transform: translateX(-50%);
+    max-width: 95vw;
+    width: 95%;
+  }
+  
+  /* Galeries */
+  .brand {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .photo-brand {
+    width: 80%;
+    max-width: 600px;
+    height: 500px;
+  }
+  
+  .collection {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  #photo-collection img {
+    height: 500px;
+  }
+  
+  /* Rectangle */
+  .rectangle {
+    flex-direction: column;
+    margin-left: 20px;
+    max-width: 95%;
+  }
+  
+  .rectangle img {
+    width: 100%;
+    height: 400px;
+  }
+  
+  /* Footer tablette */
+  footer {
+    padding: 1.5rem 1rem;
+  }
+  
+  .footer-content {
+    gap: 1.2rem;
+  }
+  
+  #footer-section {
+    flex: 1 1 180px;
+    min-width: 160px;
+  }
+  
+  #footer-section h3 {
+    font-size: 1rem;
+    margin-bottom: 0.7rem;
+  }
+  
+  #footer-section ul li {
+    font-size: 0.8rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .social-icons {
+    gap: 1rem;
+  }
+  
+  .social-icons a i {
+    font-size: 1.5rem;
+  }
+}
+
+  /* Mobiles (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  /* Header mobile */
+  header {
+    padding: 8px 10px;
+    height: auto;
+  }
+  
+  header ul {
+    margin-left: 0;
+    margin-top: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  header ul li {
+    margin: 3px 10px;
+    flex-shrink: 0;
+  }
+  
+  header ul a {
+    font-size: 13px;
+    margin-left: 0;
+    padding: 5px 8px;
+  }  /* Section hero mobile */
+  .text-overlay {
+    left: 50%;
+    top: 30%;
+    width: 95%;
+    max-width: 95vw;
+    transform: translate(-50%, -50%);
+    padding: 0 10px;
+  }
+  
+  .text-overlay h1 {
+    font-size: 60px;
+    line-height: 1.1;
+  }
+  
+  .btn-debug {
+    font-size: 12px;
+    padding: 8px 16px;
+    margin-left: 0;
+  }
+  
+  /* Sections */
+  .debug-section {
+    margin-top: 100vh;
+    height: auto;
+    padding-bottom: 50px;
+  }
+  
+  #presentation-voiture {
+    height: auto;
+    padding: 20px 0;
+  }
+  
+  /* Textes */
+  #h3-presentation {
+    font-size: 28px;
+    padding: 0 20px;
+  }
+  
+  #p-bugatti {
+    font-size: 16px;
+    padding: 0 20px;
+  }
+  
+  /* Vidéo actualités mobile */
+  .video-voiture {
+    width: 95%;
+    height: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+  }
+  
+  .txt-overlay {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    left: auto;
+    transform: none;
+    top: 0;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .txt-overlay h4 {
+    font-size: 24px;
+  }
+  
+  .txt-overlay p {
+    font-size: 14px;
+  }
+  
+  /* Galeries mobile */
+  .brand {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 0 20px;
+  }
+  
+  .photo-brand {
+    width: 100%;
+    height: 400px;
+  }
+  
+  .maison-name {
+    font-size: 20px;
+    top: 20px;
+  }
+  
+  #btn-presentation {
+    font-size: 10px;
+    padding: 10px 20px;
+  }
+  
+  /* Collection mobile */
+  .collection {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-right: 0;
+    padding: 0 20px;
+  }
+  
+  #photo-collection {
+    width: 100%;
+  }
+  
+  #photo-collection img {
+    height: 400px;
+    width: 100%;
+  }
+  
+  .brand-name {
+    font-size: 60px;
+    top: -20px;
+  }
+  
+  #btn-collection {
+    font-size: 12px;
+    padding: 10px 0;
+  }
+  
+  /* Section luxe */
+  .voiture-luxe {
+    margin-top: 0;
+    min-height: auto;
+    padding-bottom: 50px;
+  }
+  
+  /* Rectangle mobile */
+  .rectangle {
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+    max-width: 95%;
+  }
+  
+  .rectangle img {
+    width: 100%;
+    height: 250px;
+  }
+  
+  .text-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+  
+  .h3-rec {
+    font-size: 22px;
+  }
+  
+  .p-rec {
+    font-size: 14px;
+  }
+  
+  #btn-transparent {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+  
+  /* Footer mobile */
+  footer {
+    padding: 1rem 0.5rem;
+  }
+  
+  .footer-content {
+    gap: 0.8rem;
+    justify-content: space-around;
+  }
+  
+  #footer-section {
+    flex: 1 1 150px;
+    min-width: 120px;
+  }
+  
+  #footer-section h3 {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  #footer-section ul li {
+    font-size: 0.7rem;
+    margin-bottom: 0.2rem;
+  }
+  
+  .social-icons {
+    justify-content: center;
+    gap: 0.8rem;
+  }
+  
+  .social-icons a i {
+    font-size: 1.2rem;
+  }
+}
+
+/* Très petits écrans (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .text-overlay h1 {
+    font-size: 40px;
+  }
+  
+  .btn-debug {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+  
+  #h3-presentation {
+    font-size: 24px;
+  }
+  
+  .txt-overlay h4 {
+    font-size: 20px;
+  }
+  
+  .brand-name {
+    font-size: 40px;
+  }
+  
+  .maison-name {
+    font-size: 16px;
+  }
+  
+  .h3-rec {
+    font-size: 18px;
+  }
+}
+
+/* Écrans très larges (min-width: 1920px) */
+@media screen and (min-width: 1920px) {
+  .text-overlay {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  header ul {
+    margin-left: 300px;
+  }
+  
+  .txt-overlay {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .video-voiture {
+    width: 1800px;
+    margin-left: 60px;
+  }
+  
+  .rectangle {
+    margin-left: 90px;
+    max-width: 1800px;
+  }
+}
+
